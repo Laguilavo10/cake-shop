@@ -1,0 +1,21 @@
+---
+import Card from './Card.astro'
+const array = Array(3).fill(null)
+---
+
+<section class='mb-36'>
+  <h3 class='text-2xl font-bold'>
+    Popular <span class='border-b-4 border-secondary'>ahora</span>
+  </h3>
+  <ul class='relative mt-10 flex justify-evenly'>
+    {
+      array.map(() => (
+        <li class='list-none'>
+          <Card />
+        </li>
+      ))
+    }
+    <div class='absolute top-24 -z-10 h-4/5 w-full rounded-3xl bg-secondary'>
+    </div>
+  </ul>
+</section>
