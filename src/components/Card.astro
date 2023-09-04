@@ -1,12 +1,9 @@
 ---
-// interface Props {
-// 	title: string;
-// 	body: string;
-// 	href: string;
-// }
 import Icon from 'heroicons-astro/Heroicon.astro'
 import { WhatsAppIcon } from '../assets/icons'
 import type { Cake } from '../types/types'
+import {convertToCOP} from "../utils/convertToCOP";
+
 
 interface Props extends Cake {}
 const { name, price, imageCake } = Astro.props
@@ -33,7 +30,7 @@ const { name, price, imageCake } = Astro.props
   <div class='my-2 flex flex-col justify-between px-1'>
     <div class='flex w-full items-end justify-end gap-1'>
       <small class='mb-1 text-gray-500'>desde</small>
-      <span class='text-2xl font-bold'>${price}</span>
+      <span class='text-2xl font-bold'>${convertToCOP(price ?? 0)}</span>
     </div>
     <p>{name}</p>
   </div>
@@ -47,7 +44,9 @@ const { name, price, imageCake } = Astro.props
     <a
       class='flex w-max cursor-pointer items-center gap-3 self-center rounded-md bg-green-whatsapp px-2 py-1 transition-transform duration-150 ease-in'
       target='_blank'
-      href={ `https://api.whatsapp.com/send?phone=${import.meta.env.PHONE_NUMBER}`}
+      href={`https://api.whatsapp.com/send?phone=${
+        import.meta.env.PHONE_NUMBER
+      }`}
     >
       <p>¡Pedir Ahora!</p>
       <WhatsAppIcon />
