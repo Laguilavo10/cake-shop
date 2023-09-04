@@ -6,13 +6,13 @@
 // }
 import Icon from 'heroicons-astro/Heroicon.astro'
 import { WhatsAppIcon } from '../assets/icons'
+import type { Cake } from '../types/types'
 
-// const { href, title, body } = Astro.props;
-const img =
-  'https://www.rama.com.co/-/media/Project/Upfield/Brands/Rama/Rama-CO/Assets/Recipes/sync-img/5c3923a9-ab27-4d26-aaa1-9500924c666f.png?rev=96b46b00ed0a4007ace051f2b1161f54&w=900'
+interface Props extends Cake {}
+const { name, price, imageCake } = Astro.props
 ---
 
-<article class='flex max-w-[300px] flex-col rounded-lg bg-white p-5'>
+<article class='flex max-w-[500px] flex-col rounded-lg bg-white p-5 shadow-2xl'>
   <div class='relative'>
     <div
       class='absolute left-2 top-2 flex items-center gap-1 rounded-full bg-white px-2 py-1'
@@ -24,16 +24,33 @@ const img =
         customClasses='h-5 w-5 fill-yellow-400'
       />
     </div>
-    <img src={img} alt='pastel' class='h-[200px] rounded-lg object-cover' />
+    <img
+      src={imageCake}
+      alt='pastel'
+      class='h-[200px] rounded-lg object-cover'
+    />
   </div>
-  <div class='my-2 flex justify-between px-1'>
-    <p>Pastel</p>
-    <span class='font-bold'>21.000</span>
+  <div class='my-2 flex flex-col justify-between px-1'>
+    <div class='flex w-full items-end justify-end gap-1'>
+      <small class='mb-1 text-gray-500'>desde</small>
+      <span class='text-2xl font-bold'>${price}</span>
+    </div>
+    <p>{name}</p>
   </div>
-  <div
-    class='mt-2 flex cursor-pointer items-center gap-3 self-center rounded-md bg-[#25D366] px-2 py-1 transition-transform duration-150 ease-in'
-  >
-    <p>¡Pedir Ahora!</p>
-    <WhatsAppIcon />
+  <div class='mt-2 flex justify-evenly gap-1'>
+    <a
+      href=''
+      class='flex w-max items-center rounded-md border-2 border-secondary px-2 py-1 transition-colors duration-150 ease-out hover:bg-secondary hover:text-white'
+    >
+      Mas info
+    </a>
+    <a
+      class='flex w-max cursor-pointer items-center gap-3 self-center rounded-md bg-green-whatsapp px-2 py-1 transition-transform duration-150 ease-in'
+      target='_blank'
+      href={ `https://api.whatsapp.com/send?phone=${import.meta.env.PHONE_NUMBER}`}
+    >
+      <p>¡Pedir Ahora!</p>
+      <WhatsAppIcon />
+    </a>
   </div>
 </article>

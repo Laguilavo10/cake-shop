@@ -1,14 +1,31 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
-import Hero from '../components/Hero.astro';
-import Header from '../components/Header.astro';
+import Layout from '../layouts/Layout.astro'
+import Hero from '../components/Hero.astro'
+import Header from '../components/Header.astro'
+import Popular from '../components/Popular.astro'
+import AboutUs from '../components/AboutUs.astro'
+import Service from '../components/Service.astro'
+import ForYou from '../components/ForYou.astro'
+import Location from '../components/Location.astro'
+import { client } from '../services/contentful.config'
+
+const data = await client.getEntries()
 ---
 
-<Layout title="Welcome to Astro.">
-	<Header/>
-	<main>
-		<Hero/>
-	</main>
+<Layout title='Welcome to Astro.'>
+  <Header />
+  <main class='relative'>
+    <Hero />
+    <Popular cakes={data?.items} />
+    <Service />
+    <AboutUs />
+    <ForYou cakes={data?.items}/>
+    <Location />
+  </main>
 </Layout>
 
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>

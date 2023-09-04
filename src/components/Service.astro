@@ -1,0 +1,40 @@
+---
+import Decorator from './Decorator.astro'
+import Icon from 'heroicons-astro/Heroicon.astro'
+import Section from './Section.astro'
+const details = [
+  {
+    svg: 'star',
+    title: 'Economicos',
+    text: 'Pasteles Economicos para distintas ocaciones'
+  },
+  {
+    svg: 'star',
+    title: 'Deliciosos',
+    text: 'Pasteles Deliciosos para distintas ocaciones'
+  },
+  {
+    svg: 'star',
+    title: 'A domicilio',
+    text: 'Se hacen los pedidos a domicilios dentro de un area de 1 km'
+  }
+]
+---
+
+<Section title='Nuestro' textUnderline='Servicio' id='service'>
+  <div class='flex items-center justify-between gap-8'>
+    {
+      details.map((detail) => (
+        <article class='flex flex-col items-center justify-center'>
+          <Icon
+            iconCode={detail.svg}
+            iconStyle='solid'
+            customClasses='h-36 fill-yellow-400'
+          />
+          <span class='text-xl font-bold text-secondary'>{detail.title}</span>
+          <p class='mt-5 text-center'>{detail.text}</p>
+        </article>
+      ))
+    }
+  </div>
+</Section>

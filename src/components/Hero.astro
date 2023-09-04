@@ -1,10 +1,16 @@
 ---
 import cake from '../assets/cake.png'
+import {BlobBackground} from "../assets/icons";
+
 ---
 
 <section
-  class='grid grid-cols-2  justify-center items-center h-screen'
+  class='m-auto grid h-screen max-w-6xl grid-cols-2 items-center justify-center px-4 '
 >
+  <!-- <div class='absolute -left-64 top-44 -z-10 h-screen w-[10vw] bg-principal rotate-45 '/> -->
+  <div class="absolute inset-0 -z-20  skew-y-12 overflow-hidden bg-principal md:translate-y-40 lg:translate-y-52 2xl:translate-y-72"/>
+
+
   <article class='flex flex-col gap-5'>
     <h1 class='text-5xl font-bold leading-snug'>
       Disfruta de un <span class='text-secondary'>pastel</span> en una celebracion
@@ -16,7 +22,16 @@ import cake from '../assets/cake.png'
       temporibus minima distinctio! Nesciunt velit facilis hic, porro incidunt
       veniam tempora autem.
     </p>
-    <a href='#' class='rounded-full px-5 py-2 border border-gray-500 w-min font-bold text-secondary'>Menu</a>
+    <a
+      href='#for-you'
+      class='w-min rounded-full border border-gray-500 px-5 py-2 font-bold text-secondary hover:bg-secondary hover:text-white transition-colors ease-in-out duration-500'
+      >Menu</a
+    >
   </article>
-  <img src={cake} alt='pastel de cumpleaños' class='w-64 justify-self-center' />
+  <div class='flex justify-self-center relative w-full h-full justify-center items-center mt-10'>
+    <BlobBackground className='top-0 bottom-0 m-auto absolute justify-self-center self-center'/>
+  
+    <img src={cake} alt='pastel de cumpleaños' class='h-96 z-10 mb-20' />
+
+  </div>
 </section>

@@ -1,0 +1,32 @@
+---
+import Decorator from './Decorator.astro'
+import Section from './Section.astro'
+const img =
+  'https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D&w=1000&q=80'
+---
+
+<section class='pt-32' id='about-us'>
+  <section
+    class='relative m-auto mb-20 flex max-w-6xl flex-col items-center gap-10 bg-secondary px-4 py-16 md:grid md:grid-cols-2 md:rounded-2xl'
+  >
+    <img
+      src={img}
+      alt='pastel'
+      class=' h-96 w-72 justify-self-center rounded-2xl border-4 border-slate-600 object-cover md:absolute md:right-[60%]'
+    ></img>
+    <div class='md:col-start-2 md:col-end-3 flex flex-col gap-4'>
+      <h3 class='text-c mb-3 text-2xl font-extrabold'>
+        Sobre <Decorator>Nosotros</Decorator>
+      </h3>
+      <p class='font-bold'>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates,
+        doloremque, praesentium voluptas quibusdam sequi ipsam eligendi fugiat
+        vel distinctio delectus, officiis velit magnam. Vitae repellendus minus
+        itaque quos quas eligendi?
+      </p>
+    </div>
+  </section>
+</section>

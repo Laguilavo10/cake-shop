@@ -1,21 +1,24 @@
 ---
+import type { Entry, EntrySkeletonType } from 'contentful'
 import Card from './Card.astro'
+import Decorator from './Decorator.astro'
+import Section from './Section.astro'
+import CardsCakes from './CardsCakes.astro'
 const array = Array(3).fill(null)
+interface Props {
+  cakes?: Entry<EntrySkeletonType, undefined, string>[]
+}
+const { cakes } = Astro.props
+console.log(cakes);
+
 ---
 
-<section class='mb-36'>
-  <h3 class='text-2xl font-bold'>
-    Popular <span class='border-b-4 border-secondary'>ahora</span>
-  </h3>
-  <ul class='relative mt-10 flex justify-evenly'>
-    {
-      array.map(() => (
-        <li class='list-none'>
-          <Card />
-        </li>
-      ))
-    }
-    <div class='absolute top-24 -z-10 h-4/5 w-full rounded-3xl bg-secondary'>
+<Section title='Popular' textUnderline='ahora' id='popular'>
+  <ul class='relative grid grid-cols-3 gap-20'>
+    <CardsCakes cakes={cakes} countToShow={3}/>
+    <div
+      class='absolute top-24 -z-10 h-4/5 w-[110%] justify-self-center rounded-3xl bg-secondary'
+    >
     </div>
   </ul>
-</section>
+</Section>
