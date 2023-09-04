@@ -1,37 +1,43 @@
 ---
 import cake from '../assets/cake.png'
-import {BlobBackground} from "../assets/icons";
-
+import { BlobBackground } from '../assets/icons'
 ---
 
 <section
-  class='m-auto grid h-screen max-w-6xl grid-cols-2 items-center justify-center px-4 '
+  class='m-auto flex h-screen max-w-6xl flex-col-reverse items-center justify-center md:gap-20 px-4 pt-20 md:grid md:grid-cols-2 md:pt-0'
 >
-  <!-- <div class='absolute -left-64 top-44 -z-10 h-screen w-[10vw] bg-principal rotate-45 '/> -->
-  <div class="absolute inset-0 -z-20  skew-y-12 overflow-hidden bg-principal md:translate-y-40 lg:translate-y-52 2xl:translate-y-72"/>
-
+  <div
+    class='absolute inset-0 -z-20 skew-y-12 overflow-hidden bg-principal md:translate-y-40 lg:translate-y-52 2xl:translate-y-72'
+  >
+  </div>
 
   <article class='flex flex-col gap-5'>
-    <h1 class='text-5xl font-bold leading-snug'>
+    <h1 class='text-2xl font-bold leading-snug md:text-5xl'>
       Disfruta de un <span class='text-secondary'>pastel</span> en una celebracion
       especial
     </h1>
     <p>
       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt tenetur
       perferendis optio quos facilis necessitatibus cupiditate laborum, corrupti
-      temporibus minima distinctio! Nesciunt velit facilis hic, porro incidunt
-      veniam tempora autem.
     </p>
     <a
       href='#menu'
-      class='w-min rounded-full border border-gray-500 px-5 py-2 font-bold text-secondary hover:bg-secondary hover:text-white transition-colors ease-in-out duration-500'
+      class='md:self-start self-center w-min rounded-full border border-gray-500 px-5 py-2 font-bold text-white bg-secondary transition-colors duration-500 ease-in-out hover:bg-transparent hover:text-secondary'
       >Menu</a
     >
   </article>
-  <div class='flex justify-self-center relative w-full h-full justify-center items-center mt-10'>
-    <BlobBackground className='top-0 bottom-0 m-auto absolute justify-self-center self-center'/>
-  
-    <img src={cake} alt='pastel de cumpleaños' class='h-96 z-10 mb-20' />
+  <div
+    class='relative flex md:h-4/6 w-full justify-center md:mt-10 md:items-center h-1/2'
+  >
+    <BlobBackground
+      className='md:top-0 bottom-0 md:m-auto absolute md:justify-self-center self-center md:h-[140%] top-5 w-full h-full'
+    />
 
+    <img
+      src={cake}
+      alt='pastel de cumpleaños'
+      class='z-10 mb-24 h-[80%] md:h-96'
+    />
   </div>
+
 </section>
