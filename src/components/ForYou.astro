@@ -3,14 +3,32 @@ import type { Entry, EntrySkeletonType } from 'contentful'
 import Card from './Card.astro'
 import Section from './Section.astro'
 import CardsCakes from './CardsCakes.astro'
+import type { Cake } from '../types/types'
+import customCakeImage from "../assets/custom-cake.webp";
+
 interface Props {
   cakes?: Entry<EntrySkeletonType, undefined, string>[]
 }
 const { cakes } = Astro.props
+
+const customCake : Cake = {
+  name : 'Personaliza tu pastel',
+  price: '50000',
+  description: 'uwu',
+  imageCake: customCakeImage
+}
 ---
 
 <Section title='Menu' textUnderline='para ti' id='menu'>
   <ul class='grid grid-cols-3 gap-14'>
-    <CardsCakes cakes={cakes} countToShow={6}/>
+    <CardsCakes cakes={cakes} countToShow={5}/>
+    <li class='list-none'>
+      <Card
+        name={customCake.name}
+        price={customCake.price}
+        imageCake={customCake.imageCake}
+        description={customCake.description}
+      />
+    </li>
   </ul>
 </Section>

@@ -7,11 +7,14 @@ import {convertToCOP} from "../utils/convertToCOP";
 
 interface Props extends Cake {}
 const { name, price, imageCake } = Astro.props
+
+const img =
+  'https://www.rama.com.co/-/media/Project/Upfield/Brands/Rama/Rama-CO/Assets/Recipes/sync-img/5c3923a9-ab27-4d26-aaa1-9500924c666f.png?rev=96b46b00ed0a4007ace051f2b1161f54&w=900'
 ---
 
 <article class='flex max-w-[500px] flex-col rounded-lg bg-white p-5 shadow-2xl'>
   <div class='relative'>
-    <div
+    <!-- <div
       class='absolute left-2 top-2 flex items-center gap-1 rounded-full bg-white px-2 py-1'
     >
       <span>4.8</span>
@@ -20,19 +23,19 @@ const { name, price, imageCake } = Astro.props
         iconStyle='solid'
         customClasses='h-5 w-5 fill-yellow-400'
       />
-    </div>
+    </div> -->
     <img
-      src={imageCake}
+      src={imageCake ?? img }
       alt='pastel'
-      class='h-[200px] rounded-lg object-cover'
+      class='h-[200px] rounded-lg object-cover aspect-video'
     />
   </div>
   <div class='my-2 flex flex-col justify-between px-1'>
     <div class='flex w-full items-end justify-end gap-1'>
       <small class='mb-1 text-gray-500'>desde</small>
-      <span class='text-2xl font-bold'>${convertToCOP(price ?? 0)}</span>
+      <span class='text-lg font-bold'>${convertToCOP(price ?? 0)}</span>
     </div>
-    <p>{name}</p>
+    <p class='text-2xl font-bold'>{name}</p>
   </div>
   <div class='mt-2 flex justify-evenly gap-1'>
     <a
@@ -49,7 +52,7 @@ const { name, price, imageCake } = Astro.props
       }`}
     >
       <p>¡Pedir Ahora!</p>
-      <WhatsAppIcon />
+      <WhatsAppIcon className='fill-white' />
     </a>
   </div>
 </article>
