@@ -1,0 +1,18 @@
+---
+import { WhatsAppIcon } from '../assets/icons'
+interface Props {
+  title: string
+  message?: string
+}
+const { title, message } = Astro.props
+
+---
+
+<a
+  class='flex w-max cursor-pointer items-center gap-3 self-center rounded-md bg-green-whatsapp px-2 py-1 transition-transform duration-150 ease-in hover:scale-105'
+  target='_blank'
+  href={`https://api.whatsapp.com/send?phone=${import.meta.env.PHONE_NUMBER}${message ? '&text='+message : ''}`}
+>
+  <p>{title}</p>
+  <WhatsAppIcon className='fill-white' />
+</a>

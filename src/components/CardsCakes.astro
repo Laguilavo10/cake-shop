@@ -1,8 +1,9 @@
 ---
 import type { Entry, EntrySkeletonType } from 'contentful'
 import Card from './Card.astro'
+import type { Cake } from '../types/types'
 interface Props {
-  cakes?: Entry<EntrySkeletonType, undefined, string>[]
+  cakes?: Cake[]
   countToShow: number
 }
 
@@ -11,16 +12,15 @@ const cakesToShow = countToShow === cakes?.length ? cakes : cakes?.slice(0, coun
 ---
 
 {
-  cakesToShow?.map(({ fields: cake }) => {
-    const img =cake?.imageCake?.fields?.file?.url
-    const description = cake?.description?.content[0].content?.value
+  cakesToShow?.map((cake) => {
+
     return (
       <li class='list-none'>
         <Card
-          name={cake?.name?.toString()}
-          price={cake?.price?.toString()}
-          imageCake={img}
-          description={description}
+          name={cake.name}
+          price={cake.price}
+          imageCake={cake?.imageCake}
+          description={cake.description}
         />
       </li>
     )

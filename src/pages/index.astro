@@ -8,18 +8,21 @@ import Service from '../components/Service.astro'
 import ForYou from '../components/ForYou.astro'
 import Location from '../components/Location.astro'
 import { client } from '../services/contentful.config'
+import { getCakes } from '../services/getCakes'
 
-const data = await client.getEntries()
+const data = await getCakes()
+console.log(data);
+
 ---
 
 <Layout title='Welcome to Astro.'>
   <Header client:load/>
   <main class='relative'>
     <Hero />
-    <Popular cakes={data?.items} />
+    <Popular cakes={data} />
     <Service />
     <AboutUs />
-    <ForYou cakes={data?.items}/>
+    <ForYou cakes={data}/>
     <Location />
   </main>
 </Layout>
