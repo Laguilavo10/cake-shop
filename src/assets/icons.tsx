@@ -1,4 +1,7 @@
-export function WhatsAppIcon({ className, ...props }: React.SVGProps<SVGSVGElement>) {
+export function WhatsAppIcon({
+  className,
+  ...props
+}: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -22,15 +25,31 @@ export function WhatsAppIcon({ className, ...props }: React.SVGProps<SVGSVGEleme
 
 export const BlobBackground = ({ ...props }: React.SVGProps<SVGSVGElement>) => {
   return (
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      viewBox='0 0 200 200'
-      {...props}
-    >
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' {...props}>
       <path
         fill='#F06'
         d='M146.2 25c12 10.8 18.8 26.5 25.8 42 7 15.6 14.1 31 11.7 44.7-2.4 13.8-14.4 25.9-26.9 34.1-12.4 8.3-25.4 12.6-37.8 14.1-12.4 1.5-24.3.1-37.6-1.5-13.2-1.7-27.8-3.6-35.2-11.9-7.4-8.3-7.6-23-11.4-38.2-3.8-15.2-11.2-30.9-8.5-44.1 2.7-13.3 15.5-24 29.5-33.9 14-9.9 29.1-18.8 45.2-20.4 16.1-1.5 33.2 4.3 45.2 15.1z'
       ></path>
+    </svg>
+  )
+}
+
+export const MenuIcon = ({className, ...props }: React.SVGProps<SVGSVGElement>) => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      fill='none'
+      viewBox='0 0 24 24'
+      strokeWidth={1.5}
+      stroke='currentColor'
+      className={className}
+      {...props}
+    >
+      <path
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'
+      />
     </svg>
   )
 }

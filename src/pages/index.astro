@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import Hero from '../components/Hero.astro'
-import Header from '../components/Header.astro'
+import Header from '../components/Header'
 import Popular from '../components/Popular.astro'
 import AboutUs from '../components/AboutUs.astro'
 import Service from '../components/Service.astro'
@@ -13,7 +13,7 @@ const data = await client.getEntries()
 ---
 
 <Layout title='Welcome to Astro.'>
-  <Header />
+  <Header client:load/>
   <main class='relative'>
     <Hero />
     <Popular cakes={data?.items} />
