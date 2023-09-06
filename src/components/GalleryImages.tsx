@@ -10,7 +10,6 @@ export default function GalleryImages({
     thumbnail: string
   }[]
 }) {
-  console.log(images);
   
   return (
     <section className='justify-self-center self-center border-4 border-secondary p-5 rounded-lg'>

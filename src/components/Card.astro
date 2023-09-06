@@ -1,10 +1,9 @@
 ---
-import Icon from 'heroicons-astro/Heroicon.astro'
 import { WhatsAppIcon } from '../assets/icons'
 import type { Cake } from '../types/types'
 import {convertToCOP} from "../utils/convertToCOP";
 import { slugify } from '../utils/slugify';
-
+import {ViewTransitions} from 'astro:transitions';
 
 interface Props extends Cake {}
 const { name, price, imageCake } = Astro.props
@@ -13,21 +12,13 @@ const { name, price, imageCake } = Astro.props
 
 <article class='flex max-w-[500px] flex-col rounded-lg bg-white p-5 shadow-2xl '>
   <div class='relative'>
-    <!-- <div
-      class='absolute left-2 top-2 flex items-center gap-1 rounded-full bg-white px-2 py-1'
-    >
-      <span>4.8</span>
-      <Icon
-        iconCode='star'
-        iconStyle='solid'
-        customClasses='h-5 w-5 fill-yellow-400'
-      />
-    </div> -->
     <img
       src={imageCake ? imageCake[0] : ''}
       alt='pastel'
       class='h-[200px] rounded-lg object-cover aspect-video'
+      transition:name='uwu'
     />
+    <!-- <ViewTransitions transition:persist/> -->
   </div>
   <div class='my-2 flex flex-col justify-between px-1'>
     <div class='flex w-full items-end justify-end gap-1'>
@@ -39,9 +30,9 @@ const { name, price, imageCake } = Astro.props
   <div class='mt-2 flex justify-evenly gap-1'>
     <a
       href={`/cake/${slugify(name ?? '')}`}
-      class='flex w-max items-center rounded-md border-2 border-secondary px-2 py-1 transition-colors duration-150 ease-out hover:bg-secondary hover:text-white'
+      class='text-center flex w-max items-center rounded-md border-2 border-secondary px-2 py-1 transition-colors duration-150 ease-out hover:bg-secondary hover:text-white'
     >
-      Mas info
+      Mas Info
     </a>
     <a
       class='flex w-max cursor-pointer items-center gap-3 self-center rounded-md bg-green-whatsapp px-2 py-1 transition-transform duration-150 ease-in hover:scale-105'

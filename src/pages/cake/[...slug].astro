@@ -5,6 +5,7 @@ import WhatsAppButton from '../../components/WhatsAppButton.astro'
 import Layout from '../../layouts/Layout.astro'
 import { getCakes } from '../../services/getCakes'
 import type { Cake } from '../../types/types'
+import { ViewTransitions } from 'astro:transitions'
 
 export const getStaticPaths = async () => {
   const data = await getCakes()
@@ -25,7 +26,9 @@ const images = cake?.imageCake?.map((a: string) => ({
 
 <Layout title='Welcome to Astro.' className='bg-principal'>
   <main class='flex h-screen w-screen gap-10 p-20 md:grid md:grid-cols-2'>
-    <GalleryImages client:load images={images} />
+    <!-- <GalleryImages client:load images={images} /> -->
+    <img src={images[0].original} alt='' transition:name='uwu'>
+    <!-- <ViewTransitions /> -->
     <section class='py-10'>
       <h3 class='mb-5 text-2xl font-bold text-secondary'>{cake.name}</h3>
       <SizeCake client:load />

@@ -10,11 +10,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^2.2.1",
-    "@astrojs/tailwind": "^4.0.0",
+    "@astrojs/react": "^3.0.0",
+    "@astrojs/tailwind": "^5.0.0",
     "@types/react": "^18.2.17",
     "@types/react-dom": "^18.2.7",
-    "astro": "^2.9.3",
+    "astro": "^3.0.8",
     "contentful": "^10.5.1",
     "heroicons-astro": "^1.0.4",
     "prettier-plugin-tailwindcss": "^0.2.7",
