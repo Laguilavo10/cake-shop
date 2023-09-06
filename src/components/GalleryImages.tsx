@@ -12,7 +12,7 @@ export default function GalleryImages({
 }) {
   
   return (
-    <section className='justify-self-center self-center border-4 border-secondary p-5 rounded-lg'>
+    <section className='justify-self-center self-center p-5 rounded-lg'>
       <ImageGallery items={images} showPlayButton={false} showBullets showNav={false} onErrorImageURL='https://i.stack.imgur.com/lA6ai.png'/>
     </section>
   )

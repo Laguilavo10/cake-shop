@@ -4,10 +4,11 @@ import Card from './Card.astro'
 import Decorator from './Decorator.astro'
 import Section from './Section.astro'
 import CardsCakes from './CardsCakes.astro'
-import type { Cake } from '../types/types'
+import type { Cake } from '../services/getCakes'
+// import type { Cake } from '../types/types'
 const array = Array(3).fill(null)
 interface Props {
-  cakes?: Cake[]
+  cakes: Cake[]
 }
 const { cakes } = Astro.props
 ---

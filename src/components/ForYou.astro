@@ -2,8 +2,8 @@
 import Card from './Card.astro'
 import Section from './Section.astro'
 import CardsCakes from './CardsCakes.astro'
-import type { Cake } from '../types/types'
 import customCakeImage from "../assets/custom-cake.webp";
+import type { Cake } from '../services/getCakes';
 
 interface Props {
   cakes?: Cake[]
@@ -13,8 +13,8 @@ const { cakes } = Astro.props
 const customCake : Cake = {
   name : 'Personaliza tu pastel',
   price: '50000',
-  description: 'uwu',
-  imageCake: [customCakeImage]
+  // description: 'uwu',
+  // imageCake: [customCakeImage]
 }
 ---
 

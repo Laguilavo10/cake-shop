@@ -9,8 +9,9 @@ import Service from '../components/Service.astro'
 import ForYou from '../components/ForYou.astro'
 import Location from '../components/Location.astro'
 import { getCakes } from '../services/getCakes'
-
+import type { AssetFile, AssetLink, EntryFieldTypes } from 'contentful'
 const data = await getCakes()
+
 console.log(data);
 
 ---

@@ -4,37 +4,31 @@ import SizeCake from '../../components/SizeCake'
 import WhatsAppButton from '../../components/WhatsAppButton.astro'
 import Layout from '../../layouts/Layout.astro'
 import { getCakes } from '../../services/getCakes'
-import type { Cake } from '../../types/types'
-import { ViewTransitions } from 'astro:transitions'
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 
 export const getStaticPaths = async () => {
   const data = await getCakes()
   return data.map((cake) => ({
     params: { slug: cake.slug },
-    props: cake
+    props: { ...cake, description: documentToHtmlString(cake.description) }
   }))
 }
 
-const cake: Cake = Astro.props
+const cake = Astro.props
 const message = `¡Hola! Me gustaría ordenar un pastel de ${cake.name} ¿Puede proporcionarme más detalles, por favor?`
-
-const images = cake?.imageCake?.map((a: string) => ({
-  original: a,
-  thumbnail: a
+const images = cake.imageCake.map((img: any) => ({
+  original: img,
+  thumbnail: img
 }))
 ---
 
 <Layout title='Welcome to Astro.' className='bg-principal'>
   <main class='flex h-screen w-screen gap-10 p-20 md:grid md:grid-cols-2'>
-    <!-- <GalleryImages client:load images={images} /> -->
-    <img src={images[0].original} alt='' transition:name='uwu'>
-    <!-- <ViewTransitions /> -->
+    <GalleryImages client:load images={images} />
     <section class='py-10'>
       <h3 class='mb-5 text-2xl font-bold text-secondary'>{cake.name}</h3>
       <SizeCake client:load />
-      <p class='mt-10'>
-        {cake.description}
-      </p>
+      <p class='mt-10' set:html={cake.description} />
       <button class='mt-10 flex w-full justify-center'>
         <WhatsAppButton title='¡Pedir uno YA!' message={message} />
       </button>
