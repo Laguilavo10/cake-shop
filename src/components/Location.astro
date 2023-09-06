@@ -1,8 +1,8 @@
 ---
+import Map from './Map'
 import Section from './Section.astro'
 ---
 
 <Section textUnderline='Ubicacion' title='' id='location'>
-  <div id='map' style='height: 400px;'></div>
+  <Map client:load/>
 </Section>
-

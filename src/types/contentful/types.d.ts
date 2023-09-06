@@ -79,22 +79,22 @@ export interface Item {
 export interface ItemFields {
   name:        string;
   price:       string;
-  description?: Description;
+  description?: Document | string;
   imageCake?:   Asset[];
   slug?:        string;
 }
 
-export interface Description {
-  data:     Data;
-  content:  DescriptionContent[];
-  nodeType: string;
-}
+// export interface Description {
+//   data:     Data;
+//   content:  DescriptionContent[];
+//   nodeType: string;
+// }
 
-export interface DescriptionContent {
-  data:     Data;
-  content:  ContentContent[];
-  nodeType: string;
-}
+// export interface DescriptionContent {
+//   data:     Data;
+//   content:  ContentContent[];
+//   nodeType: string;
+// }
 
 export interface ContentContent {
   data:     Data;

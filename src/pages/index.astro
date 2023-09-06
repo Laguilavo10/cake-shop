@@ -9,22 +9,19 @@ import Service from '../components/Service.astro'
 import ForYou from '../components/ForYou.astro'
 import Location from '../components/Location.astro'
 import { getCakes } from '../services/getCakes'
-import type { AssetFile, AssetLink, EntryFieldTypes } from 'contentful'
+
 const data = await getCakes()
-
-console.log(data);
-
 ---
 
 <Layout title='Welcome to Astro.'>
-  <Header client:load/>
+  <Header client:idle/>
   <main class='relative'>
     <Hero />
     <Popular cakes={data} />
     <Service />
     <AboutUs />
     <ForYou cakes={data}/>
-    <Location />
+    <!-- <Location /> -->
   </main>
 </Layout>
 

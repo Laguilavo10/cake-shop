@@ -5,33 +5,52 @@ import WhatsAppButton from '../../components/WhatsAppButton.astro'
 import Layout from '../../layouts/Layout.astro'
 import { getCakes } from '../../services/getCakes'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
+import Icon from 'heroicons-astro/Heroicon.astro'
+import { customCake } from '../../services/customYourCake'
 
 export const getStaticPaths = async () => {
   const data = await getCakes()
+  data.push(customCake)
   return data.map((cake) => ({
-    params: { slug: cake.slug },
-    props: { ...cake, description: documentToHtmlString(cake.description) }
+    params: { slug: cake?.slug },
+    props: cake
   }))
 }
 
 const cake = Astro.props
 const message = `¡Hola! Me gustaría ordenar un pastel de ${cake.name} ¿Puede proporcionarme más detalles, por favor?`
-const images = cake.imageCake.map((img: any) => ({
+const images = cake?.imageCake?.map((img: any) => ({
   original: img,
-  thumbnail: img
+  thumbnail: img,
+  originalHeight: 200
 }))
 ---
 
-<Layout title='Welcome to Astro.' className='bg-principal'>
-  <main class='flex h-screen w-screen gap-10 p-20 md:grid md:grid-cols-2'>
-    <GalleryImages client:load images={images} />
+<Layout title='Welcome to Astro.' className='bg-principal h-screen'>
+  <a class='absolute ml-5 flex cursor-pointer gap-2 pt-10 md:ml-20 z-20' href='/'>
+    <Icon iconCode='arrow-left' iconStyle='solid' customClasses='h-6' />
+    <span class='text-xl font-semibold'>Volver</span>
+  </a>
+  <main
+    class='relative flex h-screen w-screen flex-col p-5 pt-20 md:grid md:grid-cols-2 md:gap-10 md:p-20'
+  >
+    <GalleryImages client:load images={images ?? []} />
     <section class='py-10'>
       <h3 class='mb-5 text-2xl font-bold text-secondary'>{cake.name}</h3>
       <SizeCake client:load />
-      <p class='mt-10' set:html={cake.description} />
+
+      <p class='mt-10' set:html={documentToHtmlString(cake.description)}>
+        {typeof cake.description === 'string' && cake.description}
+      </p>
       <button class='mt-10 flex w-full justify-center'>
         <WhatsAppButton title='¡Pedir uno YA!' message={message} />
       </button>
     </section>
   </main>
 </Layout>
+
+<style is:global>
+  .image-gallery-image {
+    max-height: 400px !important;
+  }
+</style>

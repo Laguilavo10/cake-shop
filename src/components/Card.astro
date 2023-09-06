@@ -1,23 +1,27 @@
 ---
 import { WhatsAppIcon } from '../assets/icons'
-import type { Cake } from '../services/getCakes';
-import {convertToCOP} from "../utils/convertToCOP";
-import { slugify } from '../utils/slugify';
-import {ViewTransitions} from 'astro:transitions';
+import type { Cake } from '../services/getCakes'
+import { convertToCOP } from '../utils/convertToCOP'
+import { slugify } from '../utils/slugify'
 
 interface Props extends Cake {}
 const { name, price, imageCake } = Astro.props
-
 ---
 
-<article class='flex max-w-[500px] flex-col rounded-lg bg-white p-5 shadow-2xl '>
+<article class='flex max-w-[500px] flex-col rounded-lg bg-white p-5 shadow-2xl'>
   <div class='relative'>
-    <img
-      src={imageCake ? imageCake[0] : ''}
-      alt='pastel'
-      class='h-[200px] rounded-lg object-cover aspect-video'
-      transition:name='uwu'
-    />
+    {
+      imageCake ? (
+        <img
+          src={imageCake[0]}
+          alt='pastel'
+          class='aspect-video h-[200px] rounded-lg object-cover'
+          transition:name='uwu'
+        />
+      ) : (
+        <div class='w-full h-[200px] rounded-lg object-cover animate-pulse bg-slate-200' />
+      )
+    }
     <!-- <ViewTransitions transition:persist/> -->
   </div>
   <div class='my-2 flex flex-col justify-between px-1'>
@@ -30,7 +34,7 @@ const { name, price, imageCake } = Astro.props
   <div class='mt-2 flex justify-evenly gap-1'>
     <a
       href={`/cake/${slugify(name ?? '')}`}
-      class='text-center flex w-max items-center rounded-md border-2 border-secondary px-2 py-1 transition-colors duration-150 ease-out hover:bg-secondary hover:text-white'
+      class='flex w-max items-center rounded-md border-2 border-secondary px-2 py-1 text-center transition-colors duration-150 ease-out hover:bg-secondary hover:text-white'
     >
       Mas Info
     </a>
