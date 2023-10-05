@@ -1,87 +1,92 @@
 export interface Contentful {
-  sys:      ContentfulSys;
-  total:    number;
-  skip:     number;
-  limit:    number;
-  items:    Item[];
-  includes: Includes;
+  sys: ContentfulSys
+  total: number
+  skip: number
+  limit: number
+  items: Item[]
+  includes: Includes
 }
 
 export interface Includes {
-  Asset: Asset[];
+  Asset: Asset[]
 }
 
 export interface Asset {
-  metadata: Metadata;
-  sys:      AssetSys;
-  fields:   AssetFields;
+  metadata: Metadata
+  sys: AssetSys
+  fields: AssetFields
 }
 
 export interface AssetFields {
-  title:       string;
-  description: string;
-  file:        File;
+  title: string
+  description: string
+  file: File
 }
 
 export interface File {
-  url:         string;
-  details:     Details;
-  fileName:    string;
-  contentType: string;
+  url: string
+  details: Details
+  fileName: string
+  contentType: string
 }
 
 export interface Details {
-  size:  number;
-  image: Image;
+  size: number
+  image: Image
 }
 
 export interface Image {
-  width:  number;
-  height: number;
+  width: number
+  height: number
 }
 
 export interface Metadata {
-  tags: ContentType[];
+  tags: ContentType[]
 }
 
 export interface ContentType {
-  sys: ContentTypeSys;
+  sys: ContentTypeSys
 }
 
 export interface ContentTypeSys {
-  id:       string;
-  type:     Type;
-  linkType: string;
+  id: string
+  type: Type
+  linkType: string
 }
 
 export enum Type {
-  Link = "Link",
+  Link = 'Link'
 }
 
 export interface AssetSys {
-  space:        ContentType;
-  id:           string;
-  type:         string;
-  createdAt:    Date;
-  updatedAt:    Date;
-  environment:  ContentType;
-  revision:     number;
-  locale:       string;
-  contentType?: ContentType;
+  space: ContentType
+  id: string
+  type: string
+  createdAt: Date
+  updatedAt: Date
+  environment: ContentType
+  revision: number
+  locale: string
+  contentType?: ContentType
 }
 
 export interface Item {
-  metadata: Metadata;
-  sys:      AssetSys;
-  fields:   ItemFields;
+  metadata: Metadata
+  sys: AssetSys
+  fields: ItemFields
 }
 
+export interface Prices {
+  S: number
+  M: number
+  L: number
+}
 export interface ItemFields {
-  name:        string;
-  price:       string;
-  description?: Document | string;
-  imageCake?:   Asset[];
-  slug?:        string;
+  name: string
+  prices: Prices
+  description?: Document | string
+  imageCake?: Asset[]
+  slug?: string
 }
 
 // export interface Description {
@@ -97,15 +102,14 @@ export interface ItemFields {
 // }
 
 export interface ContentContent {
-  data:     Data;
-  marks:    any[];
-  value:    string;
-  nodeType: string;
+  data: Data
+  marks: any[]
+  value: string
+  nodeType: string
 }
 
-export interface Data {
-}
+export interface Data {}
 
 export interface ContentfulSys {
-  type: string;
+  type: string
 }

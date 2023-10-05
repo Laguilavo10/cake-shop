@@ -14,14 +14,6 @@ const { cakes } = Astro.props
 
 <Section title='Menu' textUnderline='para ti' id='menu'>
   <ul class='md:grid md:grid-cols-3 gap-14 flex flex-wrap justify-center'>
-    <CardsCakes cakes={cakes} countToShow={5}/>
-    <li class='list-none'>
-      <Card
-        name={customCake.name}
-        price={customCake.price}
-        imageCake={customCake.imageCake}
-        slug={customCake.slug}
-      />
-    </li>
+    <CardsCakes cakes={cakes} countToShow={6}/>
   </ul>
 </Section>

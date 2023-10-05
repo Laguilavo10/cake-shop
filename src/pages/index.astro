@@ -3,24 +3,25 @@
 import Layout from '../layouts/Layout.astro'
 import Hero from '../components/Hero.astro'
 import Header from '../components/Header'
-import Popular from '../components/Popular.astro'
+// import Popular from '../components/Popular.astro'
 import AboutUs from '../components/AboutUs.astro'
 import Service from '../components/Service.astro'
 import ForYou from '../components/ForYou.astro'
-import Location from '../components/Location.astro'
+// import Location from '../components/Location.astro'
 import { getCakes } from '../services/getCakes'
 
 const data = await getCakes()
+console.log(data)
 ---
 
 <Layout title='Welcome to Astro.'>
-  <Header client:idle/>
+  <Header client:idle />
   <main class='relative'>
     <Hero />
+    <ForYou cakes={data} />
     <!-- <Popular cakes={data} /> -->
-    <Service />
     <AboutUs />
-    <ForYou cakes={data}/>
+    <Service />
     <!-- <Location /> -->
   </main>
 </Layout>
