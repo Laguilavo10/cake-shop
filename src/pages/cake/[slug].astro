@@ -3,45 +3,43 @@ import GalleryImages from '../../components/GalleryImages'
 import SizeCake from '../../components/SizeCake'
 import WhatsAppButton from '../../components/WhatsAppButton.astro'
 import Layout from '../../layouts/Layout.astro'
-import { getCakes } from '../../services/getCakes'
+import { getCakes, type Cake } from '../../services/getCakes'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import Icon from 'heroicons-astro/Heroicon.astro'
 import { customCake } from '../../services/customYourCake'
+import { slugify } from '../../utils/slugify'
 
-export const getStaticPaths = async () => {
-  const data = await getCakes()
-  data.push(customCake)
-  return data.map((cake) => ({
-    params: { slug: cake?.slug },
-    props: cake
-  }))
-}
+const { slug } = Astro.params
 
-const cake = Astro.props
-const message = `¡Hola! Me gustaría ordenar un pastel de ${cake.name} ¿Puede proporcionarme más detalles, por favor?`
-const images = cake?.imageCake?.map((img: any) => ({
-  original: img,
-  thumbnail: img,
-  originalHeight: 200
-}))
+const data = await getCakes()
+
+const cake = data.find((cake) => slugify(cake.name) === slug) as Cake
+const images = cake?.imageCake
+// const image = !cake?.imageCake ? '' : cake.imageCake[0]
+const message = 'hola'
 ---
 
 <Layout title='Welcome to Astro.' className='bg-principal h-screen'>
-  <a class='absolute ml-5 flex cursor-pointer gap-2 pt-10 md:ml-20 z-20' href='/'>
+  <a
+    class='absolute z-20 ml-5 flex cursor-pointer gap-2 pt-10 md:ml-20  items-center'
+    href='/'
+  >
     <Icon iconCode='arrow-left' iconStyle='solid' customClasses='h-6' />
     <span class='text-xl font-semibold'>Volver</span>
   </a>
-  <main
-    class='relative flex h-screen w-screen flex-col p-5 pt-20 md:grid md:grid-cols-2 md:gap-10 md:p-20'
-  >
-    <GalleryImages client:load images={images ?? []} />
-    <section class='py-10'>
-      <h3 class='mb-5 text-2xl font-bold text-secondary'>{cake.name}</h3>
+  <main class='flex flex-col md:grid md:grid-cols-[40%_1fr] gap-10 px-20 h-full py-40'>
+    <picture transition:name={`cake ${slug} box`}>
+      <GalleryImages images={images ?? []} client:visible/>
+    </picture>
+    <section class=''>
+      <h3 class='mb-5 text-2xl font-bold text-secondary' transition:name={`cake ${slug} title`}>
+        {cake?.name}
+      </h3>
       <SizeCake client:load />
-
+      <!-- @ts-ignore -->
       <p class='mt-10' set:html={documentToHtmlString(cake.description)}>
-        {typeof cake.description === 'string' && cake.description}
-      </p>
+          {typeof cake.description === 'string' && cake?.description}
+        </p>
       <button class='mt-10 flex w-full justify-center'>
         <WhatsAppButton title='¡Pedir uno YA!' message={message} />
       </button>

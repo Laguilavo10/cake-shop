@@ -2,38 +2,31 @@
 import { WhatsAppIcon } from '../assets/icons'
 import type { Cake } from '../services/getCakes'
 import { convertToCOP } from '../utils/convertToCOP'
-import { slugify } from '../utils/slugify'
 
 interface Props extends Cake {}
-const { name, price, imageCake } = Astro.props
+const { name, price, imageCake, slug } = Astro.props
+const image = !imageCake ? '' : imageCake[0]
+console.log(slug)
 ---
 
 <article class='flex max-w-[500px] flex-col rounded-lg bg-white p-5 shadow-2xl'>
-  <div class='relative'>
-    {
-      imageCake ? (
-        <img
-          src={imageCake[0]}
-          alt='pastel'
-          class='aspect-video h-[200px] rounded-lg object-cover'
-          transition:name='uwu'
-        />
-      ) : (
-        <div class='w-full h-[200px] rounded-lg object-cover animate-pulse bg-slate-200' />
-      )
-    }
-    <!-- <ViewTransitions transition:persist/> -->
-  </div>
+  <picture class='relative' transition:name={`cake ${slug} box `}>
+    <img
+      src={image}
+      alt='pastel'
+      class='aspect-video h-[200px] rounded-lg object-cover'
+    />
+  </picture>
   <div class='my-2 flex flex-col justify-between px-1'>
     <div class='flex w-full items-end justify-end gap-1'>
       <small class='mb-1 text-gray-500'>desde</small>
       <span class='text-lg font-bold'>${convertToCOP(price ?? 0)}</span>
     </div>
-    <p class='text-2xl font-bold'>{name}</p>
+    <p class='text-2xl font-bold' transition:name={`cake ${slug} title`}>{name}</p>
   </div>
   <div class='mt-2 flex justify-evenly gap-1'>
     <a
-      href={`/cake/${slugify(name ?? '')}`}
+      href={`/cake/${slug}`}
       class='flex w-max items-center rounded-md border-2 border-secondary px-2 py-1 text-center transition-colors duration-150 ease-out hover:bg-secondary hover:text-white'
     >
       Mas Info

@@ -1,8 +1,22 @@
 ---
-import Map from './Map'
 import Section from './Section.astro'
+import locationImage from '/public/location.jpeg'
 ---
 
 <Section textUnderline='Ubicacion' title='' id='location'>
-  <Map client:load/>
+  <div class='flex flex-col gap-4'>
+    <iframe
+      width='600'
+      height='450'
+      style='border:0'
+      loading='lazy'
+      allowfullscreen
+      referrerpolicy='no-referrer-when-downgrade'
+      src='https://www.google.com/maps/embed/v1/place?key=AIzaSyCCdJy8vYFyGd1cAPkVwS2nE3tiixWuyfU
+      &q=Space+Needle,Seattle+WA'
+    >
+    </iframe>
+    <!-- <img src={locationImage.src} alt='ubicacion' class='border-4 border-black'>
+    <a href='https://www.google.com/maps/place/Conjunto+Residencial+Pinos+De+Madelena/@4.5836912,-74.1565713,17z/data=!3m1!4b1!4m6!3m5!1s0x8e3f9f1bf9ff4da7:0x89b8b0747015cf90!8m2!3d4.5836859!4d-74.1539964!16s%2Fg%2F11c6dydz_f?hl=es&entry=ttu' target='_blank' class='text-end underline italic'>Ver en Google Maps</a> -->
+  </div>
 </Section>

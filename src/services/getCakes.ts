@@ -9,9 +9,10 @@ export const getCakes = async ()  => {
   const entries =  await client.getEntries() as unknown as Contentful
   
   const requireData : Cake[] = entries.items.map(item => {
-    const { name, price, description, imageCake, slug } = item.fields;    
+    const { name, price, description, imageCake, slug } = item.fields;
+    
     return {
-      slug: slug ?? slugify(name),
+      slug,
       name,
       price,
       imageCake: imageCake?.map(img => img.fields.file.url),
