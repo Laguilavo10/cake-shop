@@ -9,5 +9,5 @@ import netlify from "@astrojs/netlify/functions";
 export default defineConfig({
   integrations: [tailwind(), react()],
   output: 'server',
-  adapter: netlify()
+  adapter: vercel()
 });
