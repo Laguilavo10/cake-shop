@@ -7,7 +7,7 @@ import { getCakes, type Cake } from '../../services/getCakes'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import { slugify } from '../../utils/slugify'
 import GoBack from '../../components/GoBack.tsx'
-import {Carousel} from '../../components/Carousel.tsx'
+import { Carousel } from '../../components/Carousel.tsx'
 
 const { slug } = Astro.params
 
@@ -18,42 +18,56 @@ const images = cake?.imageCake ?? []
 const message = 'hola'
 ---
 
-<Layout title='Welcome to Astro.' className='bg-principal h-screen'>
-
-  <GoBack client:visible/>
-  <main
-    class='flex h-full flex-col gap-10 px-20 py-24  md:grid md:grid-cols-[40%_1fr]'
-  >
-    <picture transition:name={`cake ${slug} box`} class='rounded-lg border-[10px] border-white/20 border-opacity-30  shadow-2xl shadow-secondary/50'>
-      <Carousel client:visible images={images}/>
-    </picture>
-    <section class=''>
-      <h3
-        class='mb-5 text-2xl font-bold text-secondary'
-        transition:name={`cake ${slug} title`}
+<Layout title='Welcome to Astro.' className='bg-principal max-h-screen'>
+  <main class='relative mx-auto h-full max-w-7xl'>
+    <GoBack client:visible />
+    <div
+      class='py-18 flex w-full flex-col gap-10 px-20 pt-24 md:grid md:grid-cols-[40%_1fr]'
+    >
+      <picture
+        transition:name={`cake ${slug} box`}
+        class='rounded-lg border-[10px] border-white/20 border-opacity-30 shadow-2xl shadow-secondary/50'
       >
-        {cake?.name}
-      </h3>
-      <SizeCake prices={cake?.prices} client:load />
-      {
-        cake.description === undefined ? (
-          <p class='mt-10'>No Hay descripcion por el momento</p>
+        <Carousel client:visible images={images} />
+      </picture>
+      <section class=''>
+        <h3
+          class='mb-5 text-2xl font-bold text-secondary'
+          transition:name={`cake ${slug} title`}
+        >
+          {cake?.name}
+        </h3>
+        <SizeCake prices={cake?.prices} client:load />
+        {
+          cake.description === undefined ? (
+            <p class='mt-10'>No Hay descripcion por el momento</p>
           ) : (
-          // @ts-ignore
-          <p class='mt-10' set:html={documentToHtmlString(cake.description)}>
-            {typeof cake.description === 'string' && cake?.description}
-          </p>
-        )
-      }
-      <button class='mt-10 flex w-full justify-center'>
-        <WhatsAppButton title='¡Pedir uno YA!' message={message} />
-      </button>
-    </section>
+            // @ts-ignore
+            <p class='mt-10' set:html={documentToHtmlString(cake.description)}>
+              {typeof cake.description === 'string' && cake?.description}
+            </p>
+          )
+        }
+        <button class='mt-10 flex w-full justify-center'>
+          <WhatsAppButton title='¡Pedir uno YA!' message={message} />
+        </button>
+      </section>
+    </div>
   </main>
 </Layout>
 
 <style is:global>
   .image-gallery-image {
     max-height: 300px !important;
+  }
+  .slide-wrapper,
+  .carousel img {
+    object-fit: contain !important;
+    max-height: 300px !important;
+  }
+
+  .thumbs-wrapper {
+    display: flex;
+    justify-content: center;
   }
 </style>
