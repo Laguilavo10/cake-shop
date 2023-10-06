@@ -7,11 +7,9 @@ export interface Cake extends Omit<ItemFields, 'imageCake'> {
 }
 export const getCakes = async () => {
   const entries = (await client.getEntries()) as unknown as Contentful
-  console.log(entries)
 
   const requireData: Cake[] = entries.items.map((item) => {
     const { name, description, imageCake, slug, prices } = item.fields
-    console.log(prices)
     return {
       slug,
       name,

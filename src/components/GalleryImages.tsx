@@ -8,7 +8,7 @@ export default function GalleryImages({ images }: { images: string[] }) {
   })) ?? []
   return (
     <section className='w-full rounded-lg'>
-      {imagesWithFormat.length === 0 ? (
+      {imagesWithFormat?.length === 0 ? (
         <p>f</p>
       ) : (
         <ImageGallery
