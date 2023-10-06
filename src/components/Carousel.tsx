@@ -6,9 +6,9 @@ export function Carousel({ images }: { images?: string[] }) {
   return (
     <>
       {images?.length === 0 ? (
-        <div className='h-full w-full animate-pulse bg-slate-500/40' />
+        <div className='h-96 w-full animate-pulse bg-slate-500/40' />
       ) : (
-        <CarouselImages>
+        <CarouselImages className='!max-h-min [&>*]:!max-h-auto'>
           {images?.map((image) => {
             return <img src={image} key={image} />
           })}
