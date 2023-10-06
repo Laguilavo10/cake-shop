@@ -1,12 +1,10 @@
 ---
-import GalleryImages from '../../components/GalleryImages'
+// import GalleryImages from '../../components/GalleryImages'
 import SizeCake from '../../components/SizeCake'
 import WhatsAppButton from '../../components/WhatsAppButton.astro'
 import Layout from '../../layouts/Layout.astro'
 import { getCakes, type Cake } from '../../services/getCakes'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
-import Icon from 'heroicons-astro/Heroicon.astro'
-import { customCake } from '../../services/customYourCake'
 import { slugify } from '../../utils/slugify'
 import GoBack from '../../components/GoBack.tsx'
 
@@ -16,7 +14,8 @@ const data = await getCakes()
 
 const cake = data.find((cake) => slugify(cake.name) === slug) as Cake
 const images = cake?.imageCake
-// const image = !cake?.imageCake ? '' : cake.imageCake[0]
+console.log(images);
+
 const message = 'hola'
 ---
 
@@ -27,7 +26,22 @@ const message = 'hola'
     class='flex h-full flex-col gap-10 px-20 py-40 md:grid md:grid-cols-[40%_1fr]'
   >
     <picture transition:name={`cake ${slug} box`} class='rounded-lg border-[10px] border-white/20 border-opacity-30  shadow-2xl shadow-secondary/50'>
-      <GalleryImages images={images ?? []} client:visible />
+      {
+        !images ? (
+          <img
+            src='https://via.placeholder.com/300x300'
+            alt='cake'
+            class='rounded-lg'
+          />
+        ) : (
+          <img
+            src={images[0]}
+            alt='cake'
+            class='rounded-lg'
+          />
+        )
+      }
+      <!-- <GalleryImages images={images ?? []} client:visible /> -->
     </picture>
     <section class=''>
       <h3
@@ -39,7 +53,7 @@ const message = 'hola'
       <SizeCake prices={cake?.prices} client:load />
       {
         cake.description === undefined ? (
-          <p>No Hay descripcion por el momento</p>
+          <p class='mt-10'>No Hay descripcion por el momento</p>
           ) : (
           // @ts-ignore
           <p class='mt-10' set:html={documentToHtmlString(cake.description)}>
@@ -59,4 +73,3 @@ const message = 'hola'
     max-height: 300px !important;
   }
 </style>
-../../components/GoBack.tsx
