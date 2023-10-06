@@ -13,7 +13,7 @@ const { slug } = Astro.params
 const data = await getCakes()
 
 const cake = data.find((cake) => slugify(cake.name) === slug) as Cake
-const images = cake?.imageCake
+const images = cake?.imageCake ?? []
 console.log(images);
 
 const message = 'hola'
