@@ -1,5 +1,5 @@
 ---
-// import GalleryImages from '../../components/GalleryImages'
+import GalleryImages from '../../components/GalleryImages'
 import SizeCake from '../../components/SizeCake'
 import WhatsAppButton from '../../components/WhatsAppButton.astro'
 import Layout from '../../layouts/Layout.astro'
@@ -26,7 +26,7 @@ const message = 'hola'
     class='flex h-full flex-col gap-10 px-20 py-40 md:grid md:grid-cols-[40%_1fr]'
   >
     <picture transition:name={`cake ${slug} box`} class='rounded-lg border-[10px] border-white/20 border-opacity-30  shadow-2xl shadow-secondary/50'>
-      {
+      <!-- {
         !images ? (
           <img
             src='https://via.placeholder.com/300x300'
@@ -40,8 +40,8 @@ const message = 'hola'
             class='rounded-lg'
           />
         )
-      }
-      <!-- <GalleryImages images={images ?? []} client:visible /> -->
+      } -->
+      <GalleryImages images={images ?? []} client:load />
     </picture>
     <section class=''>
       <h3
