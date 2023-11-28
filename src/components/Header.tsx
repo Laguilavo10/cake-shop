@@ -6,12 +6,12 @@ const optionsMenu = [
     id: 'about-us'
   },
   {
-    title: 'Menu',
-    id: 'menu'
+    title: 'Servicio',
+    id: 'service'
   },
   {
-    title: 'Ubicación',
-    id: 'location'
+    title: 'Menu',
+    id: 'menu'
   }
 ]
 export default function Header() {
@@ -42,7 +42,7 @@ export default function Header() {
       />
       <div
         className={`${
-          isOpenMenu ? 'bg-black/40' : 'bg-transparent pointer-events-none'
+          isOpenMenu ? 'bg-black/40' : 'pointer-events-none bg-transparent'
         } fixed bottom-0  left-0 right-0 top-0 z-30 h-screen w-screen transition-all duration-200 ease-linear sm:hidden`}
         onClick={() => setIsOpenMenu(false)}
       />
@@ -55,7 +55,7 @@ export default function Header() {
           className={`absolute left-0 top-0 flex h-screen w-52 flex-col items-center justify-center gap-8 bg-principal  ${
             isOpenMenu ? 'left-0' : '-translate-x-60'
           } shadow-primary-300 shadow-2xl transition-all duration-300 ease-in
-            sm:relative sm:flex sm:h-auto sm:w-full sm:translate-x-0 sm:flex-row sm:items-start  sm:bg-transparent sm:text-center sm:text-base sm:shadow-none sm:col-start-2
+            sm:relative sm:col-start-2 sm:flex sm:h-auto sm:w-full sm:translate-x-0 sm:flex-row  sm:items-start sm:bg-transparent sm:text-center sm:text-base sm:shadow-none
             `}
         >
           {isOpenMenu && (
@@ -75,8 +75,23 @@ export default function Header() {
             </li>
           ))}
         </ul>
+
         <div className='flex justify-end'>
-          <WhatsAppIcon className={`fill-green-whatsapp ${isOpenMenu && 'fill-white'} sm:!fill-green-whatsapp`} />
+          <a
+            className='flex w-max cursor-pointer items-center gap-3 self-center rounded-md px-2 py-1 transition-transform duration-150 ease-in hover:scale-105'
+            target='_blank'
+            href={`https://api.whatsapp.com/send?phone=${
+              import.meta.env.PHONE_NUMBER
+            }`}
+          >
+            {/* <p>¡Pedir Ahora!</p> */}
+            <WhatsAppIcon
+              className={`fill-green-whatsapp ${
+                isOpenMenu && 'fill-white'
+              } sm:!fill-green-whatsapp`}
+            />
+            {/* <WhatsAppIcon className='fill-white' /> */}
+          </a>
         </div>
       </header>
     </>
