@@ -6,6 +6,7 @@ import { convertToCOP } from '../utils/convertToCOP'
 interface Props extends Cake {}
 const { name, prices, imageCake, slug } = Astro.props
 const image = !imageCake ? '' : imageCake[0]
+// const id = Math.random().toString(36).substring(7)
 ---
 
 <article class='flex max-w-[500px] flex-col rounded-lg bg-white p-5 shadow-2xl h-full justify-between'>

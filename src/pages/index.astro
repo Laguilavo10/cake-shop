@@ -3,7 +3,7 @@
 import Layout from '../layouts/Layout.astro'
 import Hero from '../components/Hero.astro'
 import Header from '../components/Header'
-// import Popular from '../components/Popular.astro'
+import Popular from '../components/Popular.astro'
 import AboutUs from '../components/AboutUs.astro'
 import Service from '../components/Service.astro'
 import ForYou from '../components/ForYou.astro'
@@ -17,10 +17,10 @@ const data = await getCakes()
   <Header client:idle />
   <main class='relative'>
     <Hero />
-    <ForYou cakes={data} />
-    <!-- <Popular cakes={data} /> -->
     <AboutUs />
     <Service />
+    <!-- <ForYou cakes={data} /> -->
+    <Popular cakes={data} />
     <!-- <Location /> -->
   </main>
 </Layout>

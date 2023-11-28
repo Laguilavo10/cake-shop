@@ -10,11 +10,11 @@ interface Props {
 const { cakes } = Astro.props
 ---
 
-<Section title='Popular' textUnderline='ahora' id='popular'>
+<Section title='Menu' textUnderline='para ti' id='menu'>
   <ul
     class='relative flex flex-wrap justify-center gap-20 lg:grid lg:grid-cols-3'
   >
-    <CardsCakes cakes={cakes} countToShow={3} />
+    <CardsCakes cakes={cakes} countToShow={6} />
     <div
       class='absolute bottom-20 top-24 -z-10 w-full justify-self-center rounded-3xl bg-secondary lg:h-4/5 lg:w-[105%] xl:w-[110%]'
     >
